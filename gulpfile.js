@@ -13,7 +13,7 @@ var concat = require('gulp-concat')
 var clean = require('gulp-clean')
 
 gulp.task('sass', done => {
-  gulp.src(['src/css/*.scss'])
+  gulp.src(['src/css/main.scss'])
     .pipe(sass())
     .pipe(autoPrefixer())
     .pipe(cssComb())
@@ -63,6 +63,11 @@ gulp.task('copy-libs', done => {
   gulp.src(['src/favicon.png'])
     .pipe(gulp.dest('docs'))
 
+  gulp.src(['node_modules/normalize.css/normalize.css '])
+    .pipe(concat('vendor.min.css'))
+    .pipe(cleanCss())
+    .pipe(gulp.dest('docs/css'))
+
   done()
 })
 
@@ -71,7 +76,7 @@ gulp.task('default', gulp.series('clean', 'copy-libs', 'html', 'sass', 'js', don
     server: './docs',
   })
   gulp.watch('src/*.html', gulp.series('html'))
-  gulp.watch('src/css/*.scss', gulp.series('sass'))
+  gulp.watch('src/css/**/*.scss', gulp.series('sass'))
   gulp.watch('src/js/*.js', gulp.series('js'))
   done()
 }))

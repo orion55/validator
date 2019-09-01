@@ -1,5 +1,3 @@
-@import "_vars";
-
-h1 {
-  color: $color-main;
-}
+@import "base/_vars";
+@import "base/_global";
+@import "modules/validate";
