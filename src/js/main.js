@@ -1,3 +1,5 @@
 $(document).ready(function () {
-  $('h1').html('Test...')
+  const valid = new Validator({
+    idEmail: 'validate-email',
+  })
 })

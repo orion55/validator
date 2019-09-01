@@ -11,6 +11,7 @@ var cleanCss = require('gulp-clean-css')
 var uglify = require('gulp-uglify')
 var concat = require('gulp-concat')
 var clean = require('gulp-clean')
+var babel = require('gulp-babel');
 
 gulp.task('sass', done => {
   gulp.src(['src/css/main.scss'])
@@ -31,6 +32,9 @@ gulp.task('sass', done => {
 
 gulp.task('js', done => {
   gulp.src(['src/js/*.js'])
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
     .pipe(concat('main.js'))
     .pipe(gulp.dest('docs/js'))
     .pipe(rename({
@@ -62,6 +66,9 @@ gulp.task('copy-libs', done => {
 
   gulp.src(['src/favicon.png'])
     .pipe(gulp.dest('docs'))
+
+  gulp.src(['src/json/*'])
+    .pipe(gulp.dest('docs/json'))
 
   gulp.src(['node_modules/normalize.css/normalize.css '])
     .pipe(concat('vendor.min.css'))

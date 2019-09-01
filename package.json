@@ -7,10 +7,13 @@
   "license": "MIT License",
   "keywords": "gulp",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "browser-sync": "*",
     "es6-promise": "*",
     "gulp": "*",
     "gulp-autoprefixer": "*",
+    "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-clean-css": "*",
     "gulp-concat": "*",

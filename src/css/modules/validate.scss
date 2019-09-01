@@ -15,6 +15,12 @@
   max-width: 360px;
   margin: 0 auto;
   padding: 35px;
+  box-shadow: none;
+  transition: box-shadow 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+.validate__form:hover {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -28,6 +34,7 @@
   width: 100%;
   box-shadow: none;
   transition: box-shadow 0.3s ease-in-out;
+  font-size: 20px;
 }
 
 .validate__email:focus {

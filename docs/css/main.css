@@ -37,11 +37,18 @@ body {
 	max-width: 360px;
 	margin: 0 auto;
 	padding: 35px;
+	transition: box-shadow .3s ease-in-out;
+	border-radius: 15px;
 	background: #fff;
+	box-shadow: none;
+}
+
+.validate__form:hover {
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, .2), 0 5px 5px 0 rgba(0, 0, 0, .24);
 }
 
 .validate__email {
+	font-size: 20px;
 	display: inline-block;
 	box-sizing: border-box;
 	width: 100%;
