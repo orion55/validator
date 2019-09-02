@@ -58,15 +58,46 @@ function () {
   }, {
     key: "isValid",
     value: function isValid(val) {
-      return false;
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        $.get(_this2.mailboxlayer.url, {
+          access_key: _this2.mailboxlayer.key,
+          email: val,
+          smtp: 1,
+          format: 1
+        }).done(function (data) {
+          if ('format_valid' in data && 'smtp_check' in data) {
+            resolve(data.format_valid && data.smtp_check);
+          }
+
+          if ('success' in data) {
+            if (!data.success) {
+              reject(data.error.info);
+            }
+          }
+        }).fail(function (error) {
+          reject(error.statusText);
+        });
+      });
     }
   }, {
     key: "checkIt",
     value: function checkIt() {
+      var _this3 = this;
+
       var valueEmail = this.emailForm.val().trim();
 
       if (this.notEmpty(valueEmail)) {
-        this.isValid(valueEmail);
+        this.isValid(valueEmail).then(function (flag) {
+          if (flag) {
+            _this3.showSuccess('Email корректен и существует!');
+          } else {
+            _this3.showError('Email не прошёл проверку!');
+          }
+        }, function (error) {
+          _this3.showError(error);
+        });
       } else {
         this.showError('Поле Email пустое!');
       }
