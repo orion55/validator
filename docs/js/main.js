@@ -79,7 +79,8 @@ function () {
         text: msg,
         type: 'error',
         confirmButtonText: 'Ok',
-        heightAuto: false
+        heightAuto: false,
+        confirmButtonColor: '#76b852'
       });
     }
   }, {
@@ -90,7 +91,8 @@ function () {
         text: msg,
         type: 'success',
         confirmButtonText: 'Ok',
-        heightAuto: false
+        heightAuto: false,
+        confirmButtonColor: '#76b852'
       });
     }
   }]);

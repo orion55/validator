@@ -47,7 +47,8 @@ class Validator {
       text: msg,
       type: 'error',
       confirmButtonText: 'Ok',
-      heightAuto: false
+      heightAuto: false,
+      confirmButtonColor: '#76b852'
     })
   }
 
@@ -57,7 +58,8 @@ class Validator {
       text: msg,
       type: 'success',
       confirmButtonText: 'Ok',
-      heightAuto: false
+      heightAuto: false,
+      confirmButtonColor: '#76b852'
     })
   }
 }
