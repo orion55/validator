@@ -17,54 +17,38 @@ var Validator =
 /*#__PURE__*/
 function () {
   function Validator(options) {
-    var _this = this;
-
     _classCallCheck(this, Validator);
 
-    var flagCheckIdEmail = this.checkIdEmail(options);
-    var flagLoadInfo = false;
-    this.loadInfo().done(function (info) {
-      _this.info = info;
-      flagLoadInfo = true;
-    }).always(function () {
-      if (flagCheckIdEmail && flagLoadInfo) {
-        _this.emailForm.keypress(function (event) {
-          if (event.which === 13) {
-            event.preventDefault();
-
-            _this.checkIt();
-
-            return true;
-          }
-        });
-      }
-    });
-    return false;
+    //Более грамотно получить эти данные через json с сервера, но задача учебная...
+    this.mailboxlayer = {
+      url: 'http://apilayer.net/api/check',
+      key: 'c6f315c07bca4e3ab5a6fd8fca2b6c58'
+    };
+    this.checkIdEmail(options);
   }
 
   _createClass(Validator, [{
     key: "checkIdEmail",
     value: function checkIdEmail(options) {
+      var _this = this;
+
       if ('idEmail' in options) {
         this.emailForm = $('#' + options.idEmail);
 
         if (this.emailForm.length !== 0) {
-          return true;
+          this.emailForm.keypress(function (event) {
+            if (event.which === 13) {
+              event.preventDefault();
+
+              _this.checkIt();
+
+              return true;
+            }
+          });
         }
       }
 
       return false;
-    }
-  }, {
-    key: "loadInfo",
-    value: function loadInfo() {
-      var _this2 = this;
-
-      return $.get('json/info.json').then(function (info) {
-        return info;
-      }).fail(function (error) {
-        _this2.onCatchError(error);
-      });
     }
   }, {
     key: "isValid",
@@ -75,6 +59,13 @@ function () {
     key: "checkIt",
     value: function checkIt() {
       console.log(this.emailForm.val());
+      Swal.fire({
+        title: 'Успешно!',
+        text: this.emailForm.val(),
+        type: 'success',
+        confirmButtonText: 'Ok',
+        heightAuto: false
+      });
     }
   }, {
     key: "showError",

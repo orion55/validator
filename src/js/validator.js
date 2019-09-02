@@ -1,45 +1,27 @@
 class Validator {
   constructor (options) {
-    const flagCheckIdEmail = this.checkIdEmail(options)
-
-    let flagLoadInfo = false
-    this.loadInfo()
-      .done((info) => {
-        this.info = info
-        flagLoadInfo = true
-      })
-      .always(() => {
-        if (flagCheckIdEmail && flagLoadInfo) {
-          this.emailForm.keypress((event) => {
-            if (event.which === 13) {
-              event.preventDefault()
-              this.checkIt()
-              return true
-            }
-          })
-        }
-      })
-    return false
+    //Более грамотно получить эти данные через json с сервера, но задача учебная...
+    this.mailboxlayer = {
+      url: 'http://apilayer.net/api/check',
+      key: 'c6f315c07bca4e3ab5a6fd8fca2b6c58'
+    }
+    this.checkIdEmail(options)
   }
 
   checkIdEmail (options) {
     if ('idEmail' in options) {
       this.emailForm = $('#' + options.idEmail)
       if (this.emailForm.length !== 0) {
-        return true
+        this.emailForm.keypress((event) => {
+          if (event.which === 13) {
+            event.preventDefault()
+            this.checkIt()
+            return true
+          }
+        })
       }
     }
     return false
-  }
-
-  loadInfo () {
-    return $.get('json/info.json')
-      .then((info) => {
-        return info
-      })
-      .fail((error) => {
-        this.onCatchError(error)
-      })
   }
 
   isValid () {
@@ -48,6 +30,13 @@ class Validator {
 
   checkIt () {
     console.log(this.emailForm.val())
+    Swal.fire({
+      title: 'Успешно!',
+      text: this.emailForm.val(),
+      type: 'success',
+      confirmButtonText: 'Ok',
+      heightAuto: false
+    })
   }
 
   showError (msg) {

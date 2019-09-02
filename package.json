@@ -21,7 +21,8 @@
     "gulp-merge-media-queries": "*",
     "gulp-rename": "*",
     "gulp-sass": "*",
-    "gulp-uglify": "*"
+    "gulp-uglify": "*",
+    "sweetalert2": "^8.17.1"
   },
   "dependencies": {
     "jquery": "^3.4.1",

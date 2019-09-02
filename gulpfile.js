@@ -11,7 +11,7 @@ var cleanCss = require('gulp-clean-css')
 var uglify = require('gulp-uglify')
 var concat = require('gulp-concat')
 var clean = require('gulp-clean')
-var babel = require('gulp-babel');
+var babel = require('gulp-babel')
 
 gulp.task('sass', done => {
   gulp.src(['src/css/main.scss'])
@@ -60,17 +60,14 @@ gulp.task('clean', done => {
 })
 
 gulp.task('copy-libs', done => {
-  gulp.src(['node_modules/jquery/dist/jquery.min.js'])
+  gulp.src(['node_modules/jquery/dist/jquery.min.js', 'node_modules/sweetalert2/dist/sweetalert2.min.js'])
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('docs/js'))
 
   gulp.src(['src/favicon.png'])
     .pipe(gulp.dest('docs'))
 
-  gulp.src(['src/json/*'])
-    .pipe(gulp.dest('docs/json'))
-
-  gulp.src(['node_modules/normalize.css/normalize.css '])
+  gulp.src(['node_modules/normalize.css/normalize.css', 'node_modules/sweetalert2/dist/sweetalert2.min.css'])
     .pipe(concat('vendor.min.css'))
     .pipe(cleanCss())
     .pipe(gulp.dest('docs/css'))
