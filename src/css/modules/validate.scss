@@ -18,10 +18,9 @@
   box-shadow: none;
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 15px;
-}
-
-.validate__form:hover {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  &:hover{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
 }
 
 .validate__email {
@@ -35,14 +34,12 @@
   box-shadow: none;
   transition: box-shadow 0.3s ease-in-out;
   font-size: 20px;
+  &:focus{
+    outline: 0;
+    border-color: $color-main;
+    box-shadow: 0 0 4px $color-main;
+  }
 }
-
-.validate__email:focus {
-  outline: 0;
-  border-color: $color-main;
-  box-shadow: 0 0 4px $color-main;
-}
-
 .validate__label {
   padding-bottom: 10px;
   display: block;

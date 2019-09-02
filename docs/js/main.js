@@ -51,38 +51,47 @@ function () {
       return false;
     }
   }, {
+    key: "notEmpty",
+    value: function notEmpty(val) {
+      return val !== '';
+    }
+  }, {
     key: "isValid",
-    value: function isValid() {
+    value: function isValid(val) {
       return false;
     }
   }, {
     key: "checkIt",
     value: function checkIt() {
-      console.log(this.emailForm.val());
+      var valueEmail = this.emailForm.val().trim();
+
+      if (this.notEmpty(valueEmail)) {
+        this.isValid(valueEmail);
+      } else {
+        this.showError('Поле Email пустое!');
+      }
+    }
+  }, {
+    key: "showError",
+    value: function showError(msg) {
       Swal.fire({
-        title: 'Успешно!',
-        text: this.emailForm.val(),
-        type: 'success',
+        title: 'Ошибка!',
+        text: msg,
+        type: 'error',
         confirmButtonText: 'Ok',
         heightAuto: false
       });
     }
   }, {
-    key: "showError",
-    value: function showError(msg) {
-      console.log(msg);
-    }
-  }, {
     key: "showSuccess",
     value: function showSuccess(msg) {
-      console.log(msg);
-    }
-  }, {
-    key: "onCatchError",
-    value: function onCatchError(response) {
-      var json = response.responseJSON,
-          message = json && json.error ? json.error : response.statusText;
-      console.log('ERROR: ', message);
+      Swal.fire({
+        title: 'Успешно!',
+        text: msg,
+        type: 'success',
+        confirmButtonText: 'Ok',
+        heightAuto: false
+      });
     }
   }]);
 

@@ -24,33 +24,40 @@ class Validator {
     return false
   }
 
-  isValid () {
+  notEmpty (val) {
+    return val !== ''
+  }
+
+  isValid (val) {
     return false
   }
 
   checkIt () {
-    console.log(this.emailForm.val())
+    const valueEmail = this.emailForm.val().trim()
+    if (this.notEmpty(valueEmail)) {
+      this.isValid(valueEmail)
+    } else {
+      this.showError('Поле Email пустое!')
+    }
+  }
+
+  showError (msg) {
     Swal.fire({
-      title: 'Успешно!',
-      text: this.emailForm.val(),
-      type: 'success',
+      title: 'Ошибка!',
+      text: msg,
+      type: 'error',
       confirmButtonText: 'Ok',
       heightAuto: false
     })
   }
 
-  showError (msg) {
-    console.log(msg)
-  }
-
   showSuccess (msg) {
-    console.log(msg)
-  }
-
-  onCatchError (response) {
-    const json = response.responseJSON,
-      message = (json && json.error) ? json.error : response.statusText
-
-    console.log('ERROR: ', message)
+    Swal.fire({
+      title: 'Успешно!',
+      text: msg,
+      type: 'success',
+      confirmButtonText: 'Ok',
+      heightAuto: false
+    })
   }
 }
