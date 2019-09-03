@@ -13,9 +13,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/**
+ * Класс валидатора email
+ * @author Гребенёв Олег <admin@infoblog72.ru>
+ */
 var Validator =
 /*#__PURE__*/
 function () {
+  /**
+   * Конструктор валидатора email
+   * @typedef {Object} Options Набор опций валидатора
+   * @property {string} options.idEmail Идентификатор поля ввода email
+   * @param {Options} options
+   */
   function Validator(options) {
     _classCallCheck(this, Validator);
 
@@ -26,6 +36,13 @@ function () {
     };
     this.checkIdEmail(options);
   }
+  /**
+   * Функция проверки переданных параметров в конструктор.
+   *
+   * @param {Options} options - Проверяемый набор опций
+   * @return {boolean} Результат проверки
+   */
+
 
   _createClass(Validator, [{
     key: "checkIdEmail",
@@ -50,11 +67,33 @@ function () {
 
       return false;
     }
+    /**
+     * Функция проверки, являеться ли строка пустой.
+     *
+     * @param {string} val - проверяемая строка
+     * @return {boolean} Результат проверки
+     *
+     * @example
+     *
+     *     notEmpty('mail@mail.ru')
+     */
+
   }, {
     key: "notEmpty",
     value: function notEmpty(val) {
       return val !== '';
     }
+    /**
+     * Функция проверки email с использованием сервиса https://mailboxlayer.com/.
+     *
+     * @param {string} val - проверяемая строка
+     * @return {Promise<(boolean|string)>} Результат проверки
+     *
+     * @example
+     *
+     *     isValid('mail@mail.ru')
+     */
+
   }, {
     key: "isValid",
     value: function isValid(val) {
@@ -81,6 +120,10 @@ function () {
         });
       });
     }
+    /**
+     * Функция выводящая всплывающее окно с результатом проверки email
+     */
+
   }, {
     key: "checkIt",
     value: function checkIt() {
@@ -102,6 +145,15 @@ function () {
         this.showError('Поле Email пустое!');
       }
     }
+    /**
+     * Функция выводит всплывающее окно с ошибкой.
+     *
+     * @param {string} msg - Сообщение об ошибке
+     *
+     * @example
+     *     showError('Всё плохо!')
+     */
+
   }, {
     key: "showError",
     value: function showError(msg) {
@@ -114,6 +166,15 @@ function () {
         confirmButtonColor: '#76b852'
       });
     }
+    /**
+     * Функция выводит всплывающее окно с успехом.
+     *
+     * @param {string} msg - Сообщение об успехе
+     *
+     * @example
+     *     showError('Всё хорошо!')
+     */
+
   }, {
     key: "showSuccess",
     value: function showSuccess(msg) {

@@ -10,6 +10,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "browser-sync": "*",
+    "documentation": "^12.1.1",
     "es6-promise": "*",
     "gulp": "*",
     "gulp-autoprefixer": "*",
@@ -27,5 +28,8 @@
   "dependencies": {
     "jquery": "^3.4.1",
     "normalize.css": "^8.0.1"
+  },
+  "scripts": {
+    "docs:build": "documentation build src/js/** -f html -o docs/doc"
   }
 }

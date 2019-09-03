@@ -1,4 +1,14 @@
+/**
+ * Класс валидатора email
+ * @author Гребенёв Олег <admin@infoblog72.ru>
+ */
 class Validator {
+  /**
+   * Конструктор валидатора email
+   * @typedef {Object} Options Набор опций валидатора
+   * @property {string} options.idEmail Идентификатор поля ввода email
+   * @param {Options} options
+   */
   constructor (options) {
     //Более грамотно получить эти данные через json с сервера, но задача учебная...
     this.mailboxlayer = {
@@ -8,6 +18,12 @@ class Validator {
     this.checkIdEmail(options)
   }
 
+  /**
+   * Функция проверки переданных параметров в конструктор.
+   *
+   * @param {Options} options - Проверяемый набор опций
+   * @return {boolean} Результат проверки
+   */
   checkIdEmail (options) {
     if ('idEmail' in options) {
       this.emailForm = $('#' + options.idEmail)
@@ -24,10 +40,30 @@ class Validator {
     return false
   }
 
+  /**
+   * Функция проверки, являеться ли строка пустой.
+   *
+   * @param {string} val - проверяемая строка
+   * @return {boolean} Результат проверки
+   *
+   * @example
+   *
+   *     notEmpty('mail@mail.ru')
+   */
   notEmpty (val) {
     return val !== ''
   }
 
+  /**
+   * Функция проверки email с использованием сервиса https://mailboxlayer.com/.
+   *
+   * @param {string} val - проверяемая строка
+   * @return {Promise<(boolean|string)>} Результат проверки
+   *
+   * @example
+   *
+   *     isValid('mail@mail.ru')
+   */
   isValid (val) {
     return new Promise((resolve, reject) => {
       $.get(
@@ -53,7 +89,9 @@ class Validator {
         })
     })
   }
-
+  /**
+   * Функция выводящая всплывающее окно с результатом проверки email
+   */
   checkIt () {
     const valueEmail = this.emailForm.val().trim()
     if (this.notEmpty(valueEmail)) {
@@ -75,6 +113,14 @@ class Validator {
     }
   }
 
+  /**
+   * Функция выводит всплывающее окно с ошибкой.
+   *
+   * @param {string} msg - Сообщение об ошибке
+   *
+   * @example
+   *     showError('Всё плохо!')
+   */
   showError (msg) {
     Swal.fire({
       title: 'Ошибка!',
@@ -86,6 +132,14 @@ class Validator {
     })
   }
 
+  /**
+   * Функция выводит всплывающее окно с успехом.
+   *
+   * @param {string} msg - Сообщение об успехе
+   *
+   * @example
+   *     showError('Всё хорошо!')
+   */
   showSuccess (msg) {
     Swal.fire({
       title: 'Успешно!',
