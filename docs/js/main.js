@@ -21,7 +21,7 @@ function () {
 
     //Более грамотно получить эти данные через json с сервера, но задача учебная...
     this.mailboxlayer = {
-      url: 'http://apilayer.net/api/check',
+      url: 'https://apilayer.net/api/check',
       key: 'c6f315c07bca4e3ab5a6fd8fca2b6c58'
     };
     this.checkIdEmail(options);
