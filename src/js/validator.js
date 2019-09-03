@@ -52,6 +52,7 @@ class Validator {
    */
   notEmpty (val) {
     return val !== ''
+    // return true
   }
 
   /**
@@ -152,3 +153,5 @@ class Validator {
     })
   }
 }
+
+module.exports = Validator

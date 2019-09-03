@@ -81,7 +81,7 @@ function () {
   }, {
     key: "notEmpty",
     value: function notEmpty(val) {
-      return val !== '';
+      return val !== ''; // return true
     }
     /**
      * Функция проверки email с использованием сервиса https://mailboxlayer.com/.
@@ -191,3 +191,16 @@ function () {
 
   return Validator;
 }();
+
+module.exports = Validator;
+"use strict";
+
+var Validator = require('./validator');
+
+describe('Validator', function () {
+  var valid = new Validator({});
+  test('notEmpty', function () {
+    expect(valid.notEmpty('')).toBe(false);
+    expect(valid.notEmpty('abc')).toBe(true);
+  });
+});
