@@ -1,4 +1,4 @@
-const Validator = require('./validator')
+const Validator = require('../src/js/validator')
 
 describe('Validator', () => {
   const valid = new Validator({})
