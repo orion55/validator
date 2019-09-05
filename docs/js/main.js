@@ -193,14 +193,3 @@ function () {
 }();
 
 module.exports = Validator;
-"use strict";
-
-var Validator = require('./validator');
-
-describe('Validator', function () {
-  var valid = new Validator({});
-  test('notEmpty', function () {
-    expect(valid.notEmpty('')).toBe(false);
-    expect(valid.notEmpty('abc')).toBe(true);
-  });
-});
